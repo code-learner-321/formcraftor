@@ -1,0 +1,153 @@
+/* Formcraftor Frontend & Editor Styles complying with WCAG AA & Neutral Standards */
+
+:root {
+    --fc-bg-color: #f9f9fb;
+    --fc-container-bg: #ffffff;
+    --fc-border-color: #dcdcde;
+    --fc-text-color: #2c3338;
+    --fc-primary-color: #2271b1;
+    --fc-primary-hover: #135e96;
+    --fc-error-color: #d63638;
+}
+
+/* Global Box Sizing Reset for Formcraftor */
+.formcraftor-wrapper,
+.formcraftor-wrapper *,
+.formcraftor-wrapper *:before,
+.formcraftor-wrapper *:after {
+    box-sizing: border-box !important;
+}
+
+.formcraftor-wrapper {
+    background-color: var(--fc-container-bg);
+    border: 1px solid var(--fc-border-color);
+    border-radius: 8px;
+    padding: 24px;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+
+    .formcraftor-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--fc-text-color);
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding: 0;
+        width: 100%;
+    }
+
+    .formcraftor-form {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+    }
+
+    .formcraftor-field-group {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0;
+        display: block;
+
+        .formcraftor-field-inner {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--fc-text-color);
+            margin-bottom: 6px;
+            width: 100%;
+
+            .required {
+                color: var(--fc-error-color);
+            }
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"],
+        textarea,
+        select {
+            display: block;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+            padding: 10px 0px;
+            border: 1px solid var(--fc-border-color);
+            border-radius: 4px;
+            background-color: #fff;
+            color: var(--fc-text-color);
+            font-size: 1rem;
+            line-height: 1.4;
+            margin: 0;
+            transition: border-color 0.2s ease;
+
+            &:focus {
+                outline: none;
+                border-color: var(--fc-primary-color);
+                box-shadow: 0 0 0 1px var(--fc-primary-color);
+            }
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    }
+
+    .formcraftor-radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        width: 100%;
+
+        label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: auto;
+        }
+    }
+
+    .checkbox-group, .toggle-group {
+        label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+    }
+
+    .formcraftor-submit-btn {
+        background-color: var(--fc-primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 12px 24px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-block;
+        max-width: 100%;
+        transition: background-color 0.2s ease;
+
+        &:hover, &:focus {
+            background-color: var(--fc-primary-hover);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .formcraftor-wrapper {
+        padding: 16px;
+        margin: 10px auto;
+    }
+}
