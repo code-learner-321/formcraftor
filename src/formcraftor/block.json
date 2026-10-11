@@ -13,7 +13,11 @@
     "attributes": {
         "selectedFormId": {
             "type": "string",
-            "default": ""
+            "default": "test_form"
+        },
+        "formTitle": {
+            "type": "string",
+            "default": "Form Test"
         },
         "fieldOverrides": {
             "type": "string",

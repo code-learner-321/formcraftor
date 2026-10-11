@@ -1,4 +1,4 @@
-/* Formcraftor Frontend & Editor Styles complying with WCAG AA & Neutral Standards */
+/* Formcraftor Frontend & Editor Styles complying with WCAG AA & Modern Standards */
 
 :root {
     --fc-bg-color: #f9f9fb;
@@ -8,6 +8,9 @@
     --fc-primary-color: #2271b1;
     --fc-primary-hover: #135e96;
     --fc-error-color: #d63638;
+    --fc-success-bg: #e7f4e8;
+    --fc-success-text: #1e4620;
+    --fc-success-border: #b7e1cd;
 }
 
 /* Global Box Sizing Reset for Formcraftor */
@@ -22,11 +25,11 @@
     background-color: var(--fc-container-bg);
     border: 1px solid var(--fc-border-color);
     border-radius: 8px;
-    padding: 24px;
+    padding: 28px;
     width: 100%;
     max-width: 100%;
     margin: 20px auto;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
     overflow: hidden;
 
     .formcraftor-title {
@@ -51,15 +54,9 @@
         margin-bottom: 0;
         display: block;
 
-        .formcraftor-field-inner {
-            width: 100%;
-            max-width: 100%;
-            display: block;
-        }
-
         label {
             display: block;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--fc-text-color);
             margin-bottom: 6px;
             width: 100%;
@@ -71,7 +68,9 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="file"],
+        input[type="tel"],
+        input[type="password"],
+        input[type="search"],
         textarea,
         select {
             display: block;
@@ -79,69 +78,215 @@
             max-width: 100% !important;
             min-width: 0 !important;
             box-sizing: border-box !important;
-            padding: 10px 0px;
+            padding: 10px 12px;
             border: 1px solid var(--fc-border-color);
             border-radius: 4px;
             background-color: #fff;
             color: var(--fc-text-color);
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.4;
             margin: 0;
-            transition: border-color 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
             &:focus {
                 outline: none;
                 border-color: var(--fc-primary-color);
-                box-shadow: 0 0 0 1px var(--fc-primary-color);
+                box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.2);
             }
         }
 
         textarea {
             resize: vertical;
         }
+
+        .formcraftor-help-text {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #646970;
+        }
     }
 
-    .formcraftor-radio-group {
+    /* Input Prefix & Suffix */
+    .formcraftor-input-wrapper {
         display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
+        align-items: stretch;
         width: 100%;
 
+        .formcraftor-prefix,
+        .formcraftor-suffix {
+            background: #f0f0f1;
+            border: 1px solid var(--fc-border-color);
+            color: #50575e;
+            font-weight: 500;
+            padding: 10px 14px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .formcraftor-prefix {
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .formcraftor-suffix {
+            border-left: none;
+            border-radius: 0 4px 4px 0;
+        }
+
+        input {
+            border-radius: 0 !important;
+        }
+
+        input:first-child {
+            border-radius: 4px 0 0 4px !important;
+        }
+
+        input:last-child {
+            border-radius: 0 4px 4px 0 !important;
+        }
+    }
+
+    /* Drag & Drop File Upload Zone */
+    .formcraftor-file-dropzone {
+        border: 2px dashed #8c8f94;
+        border-radius: 6px;
+        padding: 24px;
+        text-align: center;
+        background: #f9f9fb;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+
+        &.is-dragover {
+            border-color: var(--fc-primary-color);
+            background-color: #f0f6fc;
+        }
+
+        .formcraftor-browse-btn {
+            background: #fff;
+            color: var(--fc-primary-color);
+            border: 1px solid var(--fc-primary-color);
+            border-radius: 4px;
+            padding: 8px 18px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: var(--fc-primary-color);
+                color: #fff;
+            }
+        }
+    }
+
+    /* Modern Toggle Switch */
+    .formcraftor-switch {
+        position: relative;
+        display: inline-block;
+        width: 44px;
+        height: 24px;
+        margin: 0;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+            &:checked + .formcraftor-slider {
+                background-color: var(--fc-primary-color) !important;
+            }
+
+            &:checked + .formcraftor-slider:before {
+                transform: translateX(20px);
+            }
+        }
+
+        .formcraftor-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccd0d4;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+
+            &:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border-radius: 50%;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+
+    /* Radio Group */
+    .formcraftor-radio-container {
         label {
             font-weight: normal;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            width: auto;
+            cursor: pointer;
+            margin: 0;
         }
     }
 
-    .checkbox-group, .toggle-group {
-        label {
-            font-weight: normal;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-        }
-    }
-
+    /* Submit Button Sizes */
     .formcraftor-submit-btn {
-        background-color: var(--fc-primary-color);
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 12px 24px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-block;
-        max-width: 100%;
-        transition: background-color 0.2s ease;
+        transition: opacity 0.2s ease, transform 0.1s ease, filter 0.2s ease;
 
-        &:hover, &:focus {
-            background-color: var(--fc-primary-hover);
+        &:hover:not(:disabled) {
+            filter: brightness(0.92);
         }
+
+        &:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        &:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        &.btn-small {
+            font-size: 12px !important;
+            padding: 8px 16px !important;
+        }
+
+        &.btn-medium {
+            font-size: 14px !important;
+        }
+
+        &.btn-large {
+            font-size: 16px !important;
+            padding: 16px 32px !important;
+        }
+    }
+
+    /* Loading Spinner */
+    .formcraftor-spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: fc-spin 0.8s linear infinite;
+    }
+}
+
+@keyframes fc-spin {
+    to {
+        transform: rotate(360deg);
     }
 }
 
@@ -149,5 +294,9 @@
     .formcraftor-wrapper {
         padding: 16px;
         margin: 10px auto;
+
+        .formcraftor-field-group {
+            width: 100% !important; /* Stack columns on mobile */
+        }
     }
 }
